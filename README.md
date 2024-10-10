@@ -23,9 +23,10 @@ Repositório contendo os códigos desenvolvidos durante a disciplina de **Proble
     ```
 
 2. Entre no diretório do problema que deseja executar e rode o script Python:
-  ```plaintext
-  *pendente*
-  ```
+
+    ```plaintext
+    *pendente*
+    ```
 
 ## Tópicos Abordados
 
