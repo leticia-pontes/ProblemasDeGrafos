@@ -6,7 +6,7 @@ Repositório contendo os códigos desenvolvidos durante a disciplina de **Proble
 
 - `algoritmos/`: Contém implementações de algoritmos clássicos em grafos.
 - `exercicios/`: Resolução de problemas práticos propostos durante a disciplina.
-- `utils/`: *pendente*
+- `utils/`: Funções auxiliares para manipulação de grafos, como leitura de arquivos e geração de grafos de exemplo.
 
 ## Tecnologias Utilizadas
 
