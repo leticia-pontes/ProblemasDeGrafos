@@ -62,6 +62,11 @@ def kruskal(grafo):
         adjacentes = lista_adjacencias[vertice]
         print(f"{vertice}: {sorted(adjacentes)}")
 
+def mostrar_lista_adjacencias(grafo):
+    for vertice, adjacentes in grafo.items():
+        print(vertice, end=': ')
+        print(adjacentes)
+
 def main():
     grafo = {
         0: [(3, 4), (2, 4)],
@@ -73,6 +78,9 @@ def main():
         6: [(1, 10), (5, 3)],
         7: [(3, 10), (1, 6), (0, 3), (1, 4), (3, 5)]
     }
+
+    print('\nGrafo:\n')
+    mostrar_lista_adjacencias(grafo)
 
     kruskal(grafo)
     print()
