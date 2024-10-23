@@ -1,3 +1,4 @@
+import timeit
 
 def ordenar_arestas_por_peso(grafo):
     arestas = []
@@ -82,8 +83,8 @@ def main():
     print('\nGrafo:\n')
     mostrar_lista_adjacencias(grafo)
 
-    kruskal(grafo)
-    print()
+    tempo_kruskal = timeit.timeit(lambda: kruskal(grafo), number=1000)
+    print(f"\nTempo médio de execução do algoritmo de Kruskal (1000 execuções): {tempo_kruskal:.6f} segundos\n")
 
 if __name__ == '__main__':
     main()

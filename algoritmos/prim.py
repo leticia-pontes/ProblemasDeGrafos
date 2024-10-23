@@ -1,3 +1,4 @@
+import timeit
 
 def converter_para_lista_adjacencias(arestas):
     lista_adjacencias = {}
@@ -63,8 +64,8 @@ def main():
     print('\nGrafo:\n')
     mostrar_lista_adjacencias(grafo)
 
-    prim(grafo, 2)
-    print()
+    tempo_prim = timeit.timeit(lambda: prim(grafo), number=1000)
+    print(f"\nTempo médio de execução do algoritmo de Prim (1000 execuções): {tempo_prim:.6f} segundos\n")
 
 if __name__ == '__main__':
     main()
