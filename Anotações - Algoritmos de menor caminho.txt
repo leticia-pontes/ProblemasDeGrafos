@@ -1,4 +1,0 @@
-- marca o vértice com distância 0 e os outros com infinito (null);
-- entre os vértices já alcançados (distância != infinito) e não processado (passo 3), escolher para processar um vértice v marcado com distância mínima;
-- analisar os adjacentes de v, marcando os que ainda não tinham sido alcançados (distância infinita) com a distância de v + 1, bem como as arestas correspondentes;
-- voltar ao passo 2 se existirem mais vértices para processar.
