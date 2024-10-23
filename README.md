@@ -33,6 +33,7 @@ Repositório contendo os códigos desenvolvidos durante a disciplina de **Proble
 - Busca em Profundidade (DFS)
 - Busca em Largura (BFS)
 - Algoritmo de Dijkstra
+- Algoritmo de Kruskal
 - Algoritmo de Prim
 - Caminhos Mínimos
 - Componentes Fortemente Conexos
