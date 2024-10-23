@@ -5,36 +5,28 @@ Repositório contendo os códigos desenvolvidos durante a disciplina de **Proble
 ## Estrutura do Repositório
 
 - `algoritmos/`: Contém implementações de algoritmos clássicos em grafos.
+- `anotacoes/`: Anotações sobre conceitos teóricos.
 - `exercicios/`: Resolução de problemas práticos propostos durante a disciplina.
 - `utils/`: Funções auxiliares para manipulação de grafos, como leitura de arquivos e geração de grafos de exemplo.
 
 ## Tecnologias Utilizadas
 
 - **Linguagem:** Python 3
-- **Estrutura de dados:** *pendente*
-- **Bibliotecas:** *pendente*
-
-## Como Executar
-
-1. Clone o repositório:
-
-    ```bash
-    git clone https://github.com/leticia-pontes/ProblemasDeGrafos
-    ```
-
-2. Entre no diretório do problema que deseja executar e rode o script Python:
-
-    ```plaintext
-    *pendente*
-    ```
+- **Estrutura de dados:** *lista de adjacências, matriz de adjacências, matriz de incidências*
+- **Bibliotecas:** *`matplotlib`, `networkx`*
 
 ## Tópicos Abordados
 
 - Busca em Profundidade (DFS)
 - Busca em Largura (BFS)
-- Algoritmo de Dijkstra
+- Caminhos e ciclos Eulerianos e Hamiltonianos
 - Algoritmo de Kruskal
 - Algoritmo de Prim
-- Caminhos Mínimos
 - Componentes Fortemente Conexos
+- Caminhos Mínimos
+- Algoritmo de Dijkstra
 - Outros
+
+## Observações
+
+Este repositório é voltado para fins educacionais e não aceita colaborações. Submissões não autorizadas não são permitidas.
