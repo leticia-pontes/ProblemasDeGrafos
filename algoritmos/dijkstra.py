@@ -17,11 +17,9 @@ def dijkstra(grafo, inicio, aresta_excluida):
     v = len(grafo)
 
     """
-    sssa variável será atualizada no decorrer da função e retornada no final.
-    a lista 'distancias' mantém a menor distância conhecida de cada vértice 
-    ao vértice inicial.
-    inicialmente, todas as distâncias são definidas como 
-    infinitas (ou seja, inatingíveis) exceto para o vértice inicial que é 0.
+    Essa variável será atualizada no decorrer da função e retornada no final.
+    A lista 'distancias' mantém a menor distância conhecida de cada vértice ao vértice inicial.
+    Inicialmente, todas as distâncias são definidas como infinitas (ou seja, inatingíveis), exceto para o vértice inicial que é 0.
     """
 
     # define as distâncias como infinitas
@@ -54,8 +52,7 @@ def dijkstra(grafo, inicio, aresta_excluida):
             nova_distancia = distancia_atual + peso
 
             """
-            se a nova distância calculada for menor do que a distância atualmente 
-            conhecida para o vértice vizinho, atualiza a distância.
+            Se a nova distância calculada for menor do que a distância atualmente conhecida para o vértice vizinho, atualiza a distância.
             """
             if nova_distancia < distancias[vizinho - 1]:
 
@@ -63,8 +60,10 @@ def dijkstra(grafo, inicio, aresta_excluida):
                 distancias[vizinho - 1] = nova_distancia
 
                 # adiciona o vizinho e a nova distância à fila de prioridade
-                # a fila de prioridade garante que o próximo vértice a ser processado será sempre aquele com a menor distância conhecida.
                 heapq.heappush(fila_prioridade, (nova_distancia, vizinho - 1))
+                """
+                Fila de prioridade garante que o próximo vértice a ser processado será sempre aquele com a menor distância conhecida.
+                """
 
     # retorna a lista com as distâncias mais curtas
     return distancias
