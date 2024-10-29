@@ -1,27 +1,25 @@
 # biblioteca para fila/pilha
 import heapq
+import timeit
 
 def mostrar_grafo(grafo):
-    print()
-    for i, adjacentes in enumerate(grafo):
-        vertice = i + 1
-        print(f"* Vértice {vertice}: ", end="")
+    print("\nGrafo:")
+    for vertice, adjacentes in grafo.items():
+        print(f"{vertice}: ", end="")
         for adjacente, peso in adjacentes:
             print(f"{vertice}-{adjacente} ({peso}) ->", end=" ")
         print("null")
-        print()
 
-def dijkstra(grafo, inicio, aresta_excluida):
-
+def dijkstra(grafo, inicio):
     # pega o número de vértices do grafo
     v = len(grafo)
 
     """
     Essa variável será atualizada no decorrer da função e retornada no final.
     A lista 'distancias' mantém a menor distância conhecida de cada vértice ao vértice inicial.
-    Inicialmente, todas as distâncias são definidas como infinitas (ou seja, inatingíveis), exceto para o vértice inicial que é 0.
+    Inicialmente, todas as distâncias são definidas como infinitas (ou seja, inatingíveis), exceto para o vértice inicial, que é 0.
     """
-
+    
     # define as distâncias como infinitas
     distancias = [float("inf")] * v
 
@@ -29,7 +27,7 @@ def dijkstra(grafo, inicio, aresta_excluida):
     distancias[inicio] = 0
 
     # inicia uma fila de prioridade
-    fila_prioridade = [(0, inicio)] # (distancia, vértice)
+    fila_prioridade = [(0, inicio)]  # (distancia, vértice)
 
     # enquanto houver vértices para serem processados na fila de prioridade
     while fila_prioridade:
@@ -43,58 +41,94 @@ def dijkstra(grafo, inicio, aresta_excluida):
 
         # pega cada um dos vértices adjacentes a u (vértice atual)
         for vizinho, peso in grafo[u]:
-
-            # ignora a aresta especificada
-            if (u + 1, vizinho) == aresta_excluida or (vizinho, u + 1) == aresta_excluida:
-                continue
-
             # define a nova distância
             nova_distancia = distancia_atual + peso
 
             """
             Se a nova distância calculada for menor do que a distância atualmente conhecida para o vértice vizinho, atualiza a distância.
             """
-            if nova_distancia < distancias[vizinho - 1]:
-
+            if nova_distancia < distancias[vizinho]:
                 # atualiza a distância com o valor menor
-                distancias[vizinho - 1] = nova_distancia
+                distancias[vizinho] = nova_distancia
 
                 # adiciona o vizinho e a nova distância à fila de prioridade
-                heapq.heappush(fila_prioridade, (nova_distancia, vizinho - 1))
+                heapq.heappush(fila_prioridade, (nova_distancia, vizinho))
                 """
                 Fila de prioridade garante que o próximo vértice a ser processado será sempre aquele com a menor distância conhecida.
                 """
 
-    # retorna a lista com as distâncias mais curtas
-    return distancias
+    print("\nDistâncias mais curtas a partir do vértice inicial\n")
+    for i, distancia in enumerate(distancias):
+        print(f"{i}: {'inf' if distancia == float('inf') else distancia}")
+    print()
 
 def main():
-    # vértices e arestas
-    v, e = map(int, input("\nVértices e arestas: ").split())
 
-    # inicializa o grafo com listas de adjacência
-    grafo = [[] for _ in range(v)]
+    """
+    Grafo com pesos positivos
+    """
+    grafo = {
+        0: [(1, 5), (2, 7), (6, 4)],
+        1: [(3, 6), (4, 3)],
+        2: [(0, 5), (5, 8), (6, 2)],
+        3: [(0, 7), (7, 9)],
+        4: [(1, 6), (6, 5), (8, 3)],
+        5: [(1, 3), (5, 4), (7, 1)],
+        6: [(2, 8), (4, 4), (8, 6)],
+        7: [(0, 4), (2, 2), (5, 5)],
+        8: [(3, 9), (5, 1), (8, 7)],
+        9: [(4, 3), (6, 6), (8, 7)]
+    }
 
-    # se o grafo for não direcionado
-    for _ in range(e):
-        U, V, peso = map(int, input().split())
-        # como é não direcionado, a aresta é bidirecional (de a para b e de b para a)
-        grafo[U - 1].append((V, peso))
-        grafo[V - 1].append((U, peso))
+    """
+    O algoritmo de Dijkstra não consegue encontrar a menor distância se o grafo possuir pesos negativos,
+    porque ele assume que, uma vez que um vértice é marcado como visitado, sua menor distância é conhecida. 
+    Como essa suposição não é verdadeira com arestas negativas, o algoritmo não encontra a menor distância corretamente.
+    """
+    
+    """
+    Grafo com pesos negativos (sem ciclos negativos)
+    """
+    # grafo = {
+    #     0: [(1, 4), (2, -1)],
+    #     1: [(3, 2)],
+    #     2: [(3, 5), (4, 2)],
+    #     3: [(5, 1)],
+    #     4: [(5, -2)],
+    #     5: [(6, 3)],
+    #     6: [(7, 4)],
+    #     7: [(8, 1)],
+    #     8: [(9, 2)],
+    #     9: []
+    # }
+
+    """
+    Grafo com ciclos negativos
+        Ciclo 1: 0 → 1 → 3 → 0
+        Ciclo 2: 2 → 0 → 1 → 2
+        Ciclo 3: 2 → 6 → 4 → 1 → 3 → 0 → 2
+        Ciclo 4: 6 → 4 → 1 → 3 → 0 → 2 → 6
+    """
+    # grafo = {
+    #     0: [(1, -5), (2, -7), (6, -4)],
+    #     1: [(3, -6), (4, -3)],
+    #     2: [(0, -5), (5, -8), (6, -2)],
+    #     3: [(0, -7), (7, -9)],
+    #     4: [(1, -6), (6, -5), (8, -3)],
+    #     5: [(1, -3), (5, -4), (7, -1)],
+    #     6: [(2, -8), (4, -4), (8, -6)],
+    #     7: [(0, -4), (2, -2), (5, -5)],
+    #     8: [(3, -9), (5, -1), (8, -7)],
+    #     9: [(4, -3), (6, -6), (8, -7)]
+    # }
 
     mostrar_grafo(grafo)
 
-    inicio = int(input("\nDigite o vértice inicial: ")) - 1
-    aresta_excluida = tuple(map(int, input("\nDigite a aresta a ser excluída (no formato 'u v'): ").split()))
-    
-    # ajusta para índices base 0
-    aresta_excluida = (aresta_excluida[0] - 1, aresta_excluida[1] - 1)
-    
-    distancias = dijkstra(grafo, inicio, aresta_excluida)
+    inicio = int(input("\nDigite o vértice inicial: "))    
+    # dijkstra(grafo, inicio)
 
-    print("\nDistâncias mais curtas a partir do vértice inicial\n")
-    for i, distancia in enumerate(distancias):
-        print(f"Vértice {i + 1}: {'Inf' if distancia == float('inf') else distancia}")
+    tempo = timeit.timeit(lambda: dijkstra(grafo, inicio), number=1000)
+    print(f"\nTempo médio de execução do algoritmo de Dijkstra (1000 execuções): {tempo:.6f} segundos\n")
 
 if __name__ == "__main__":
     main()
