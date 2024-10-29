@@ -6,13 +6,15 @@ Repositório contendo os códigos desenvolvidos durante a disciplina de **Proble
 
 - `algoritmos/`: Contém implementações de algoritmos clássicos em grafos.
 - `anotacoes/`: Anotações sobre conceitos teóricos.
+- `apresentacoes`/: Arquivos .zip com o conteúdo das apresentações da P2 da disciplina.
+    - *Somente repositório local.*
 - `exercicios/`: Resolução de problemas práticos propostos durante a disciplina.
 - `utils/`: Funções auxiliares para manipulação de grafos, como leitura de arquivos e geração de grafos de exemplo.
 
 ## Tecnologias Utilizadas
 
 - **Linguagem:** Python 3
-- **Estrutura de dados:** *lista de adjacências, matriz de adjacências, matriz de incidências*
+- **Estruturas de dados:** *lista de adjacências, matriz de adjacências, matriz de incidências*
 - **Bibliotecas:** *`matplotlib`, `networkx`*
 
 ## Tópicos Abordados
@@ -25,6 +27,7 @@ Repositório contendo os códigos desenvolvidos durante a disciplina de **Proble
 - Componentes Fortemente Conexos
 - Caminhos Mínimos
 - Algoritmo de Dijkstra
+- Algoritmo de Bellman-Ford
 - Outros
 
 ## Observações
